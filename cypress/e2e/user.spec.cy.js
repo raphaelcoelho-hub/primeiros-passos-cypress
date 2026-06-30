@@ -9,7 +9,10 @@ describe('Orange HRM Tests', () => {
    sectionTitleTopBar: '.oxd-topbar-header-breadcrumb-module',
    dashboardGrid: ".orangehrm-dashboard-grid",
    wrongCredentialAlert: "[role='alert']",
-   myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]'
+   myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
+   firstNameField: "[name='firstName']",
+   lastNameField: "[name='lastName']",
+   EmployeeIdField: ".oxd-input--active",
   }
          
   it.only('User Info Update - Success', () => {
@@ -21,6 +24,7 @@ describe('Orange HRM Tests', () => {
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
     cy.get(selectorsList.dashboardGrid)
     cy.get(selectorsList.myInfoButton).click()
+    cy.get(selectorsList.EmployeeIdField).eq(4).clear().type('123456')
   })
   it('Login - Fail', () => {
     cy.visit('/auth/login')
