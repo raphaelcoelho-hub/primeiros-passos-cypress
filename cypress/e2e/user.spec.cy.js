@@ -12,7 +12,8 @@ describe('Orange HRM Tests', () => {
    myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
    firstNameField: "[name='firstName']",
    lastNameField: "[name='lastName']",
-   EmployeeIdField: ".oxd-input--active",
+   genericField: ".oxd-input--active",
+   submitButton: "[type='submit']"
   }
          
   it.only('User Info Update - Success', () => {
@@ -24,7 +25,18 @@ describe('Orange HRM Tests', () => {
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
     cy.get(selectorsList.dashboardGrid)
     cy.get(selectorsList.myInfoButton).click()
-    cy.get(selectorsList.EmployeeIdField).eq(4).clear().type('123456')
+    cy.get(selectorsList.firstNameField).clear().type('Raphael')
+    cy.get(selectorsList.lastNameField).clear().type('Coelho')
+    cy.get(selectorsList.genericField).eq(4).clear().type('123456')
+    cy.get(selectorsList.genericField).eq(5).clear().type('test')
+    cy.get(selectorsList.genericField).eq(6).clear().type('gil')
+    cy.get(selectorsList.genericField).eq(7).clear({ force: true }).type('2026-07-01')
+    cy.get(selectorsList.genericField).eq(9).clear().type('her')
+    cy.get(selectorsList.genericField).eq(10).clear().type('gerof')
+    cy.get(selectorsList.submitButton).eq(0).click()
+    cy.get('body').should('contain', 'Successfully Updated')
+    cy.get('.oxd-toast-close')
+
   })
   it('Login - Fail', () => {
     cy.visit('/auth/login')
