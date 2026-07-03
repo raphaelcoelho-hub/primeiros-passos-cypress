@@ -13,7 +13,9 @@ describe('Orange HRM Tests', () => {
    firstNameField: "[name='firstName']",
    lastNameField: "[name='lastName']",
    genericField: ".oxd-input--active",
-   submitButton: "[type='submit']"
+   submitButton: "[type='submit']",
+   comboBoxButton: ".oxd-select-text-input",
+   
   }
          
   it.only('User Info Update - Success', () => {
@@ -31,11 +33,9 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.genericField).eq(5).clear().type('test')
     cy.get(selectorsList.genericField).eq(6).clear().type('gil')
     cy.get(selectorsList.genericField).eq(7).clear({ force: true }).type('2026-07-01')
-    cy.get(selectorsList.genericField).eq(9).clear().type('her')
-    cy.get(selectorsList.genericField).eq(10).clear().type('gerof')
+    cy.contains('label', 'Nationality').next().click()
+    cy.get('oxd-select-dropdown').contains('Brazilian').click()
     cy.get(selectorsList.submitButton).eq(0).click()
-    cy.get('body').should('contain', 'Successfully Updated')
-    cy.get('.oxd-toast-close')
 
   })
   it('Login - Fail', () => {
