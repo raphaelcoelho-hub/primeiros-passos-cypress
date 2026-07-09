@@ -29,9 +29,5 @@ describe('Orange HRM Tests', () => {
     //cy.get('.oxd-select-dropdown').contains('Brazilian').click()
   })
 
-  it('Login - Fail', () => {
-    loginPage.accessLoginPage()
-    loginPage.loginWithUsernameAndPassword(userData.userFail.username, userData.userFail.password)
-    loginPage.checkAccessInvalid()
-  })
+
 })

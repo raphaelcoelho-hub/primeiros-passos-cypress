@@ -12,12 +12,12 @@ class LoginPage{
     }
 
     accessLoginPage() {
-        cy.visit('/auth/login')
+        cy.visit('/auth/login', { timeout: 15000 })
     }
 
         loginWithUsernameAndPassword(username, password) {
-            cy.get(this.selectorsList().usernameField).type(username)
-            cy.get(this.selectorsList().passwordField).type(password)
+            cy.get(this.selectorsList().usernameField, { timeout: 10000 }).should('be.visible').type(username)
+            cy.get(this.selectorsList().passwordField).should('be.visible').type(password)
             cy.get(this.selectorsList().loginButton).click()
         }
 

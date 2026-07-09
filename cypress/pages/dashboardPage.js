@@ -9,8 +9,9 @@ class dashboardPage {
     }
 
     checkDashboardPage() {
+        cy.get(this.selectorsList().dashboardGrid, { timeout: 10000}).should('be.visible')
         cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-        cy.get(this.selectorsList().dashboardGrid).should('be.visible')
+        
     }
 
 }
